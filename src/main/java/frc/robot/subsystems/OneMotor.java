@@ -4,12 +4,28 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.RelativeEncoder;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ExampleSubsystem extends SubsystemBase {
+public class OneMotor extends SubsystemBase {
+
+  private CANSparkMax spark;
+  private RelativeEncoder enc;
+  private double lastSpeed;
+
   /** Creates a new ExampleSubsystem. */
-  public ExampleSubsystem() {}
+  public OneMotor() {
+    System.out.println("Subsystem init!");
+
+    spark = new CANSparkMax(8, MotorType.kBrushless);
+    enc = spark.getEncoder();
+
+    lastSpeed = 0.0;
+  }
 
   /**
    * Example command factory method.
@@ -35,9 +51,30 @@ public class ExampleSubsystem extends SubsystemBase {
     return false;
   }
 
+  public void speed(Double s) {
+    spark.set(s);
+    lastSpeed = s;
+  }
+
+  public Double get() {
+    return spark.get();
+  }
+
+  public Double lastSpeed() {
+    return lastSpeed;
+  }
+
+  public void stop() {
+    Double oldSpeed = spark.get();
+    spark.set(0);
+    lastSpeed = oldSpeed;
+  }
+
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
   }
 
   @Override
