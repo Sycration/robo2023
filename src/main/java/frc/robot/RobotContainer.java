@@ -8,6 +8,8 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.Hold;
+import frc.robot.commands.PrintDist;
+import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.OneMotor;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -21,7 +23,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final OneMotor m_exampleSubsystem = new OneMotor();
+  private final OneMotor OneMotor = new OneMotor();
+  private final ColorSensor ColorSensor = new ColorSensor();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -49,10 +52,11 @@ public class RobotContainer {
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().onTrue(new ExampleCommand(m_exampleSubsystem, 3.0, 0.001));
-    m_driverController.a().onTrue(new ExampleCommand(m_exampleSubsystem, 3.0, -0.001));
-    m_driverController.x().onTrue(new ExampleCommand(m_exampleSubsystem, 3.0, 0.0));
-    m_driverController.y().onTrue(new Hold(m_exampleSubsystem));
+    m_driverController.b().onTrue(new ExampleCommand(OneMotor, 3.0, 0.001));
+    m_driverController.a().onTrue(new ExampleCommand(OneMotor, 3.0, -0.001));
+    m_driverController.x().onTrue(new ExampleCommand(OneMotor, 3.0, 0.0));
+    m_driverController.y().onTrue(new Hold(OneMotor));
+    m_driverController.rightStick().onTrue(new PrintDist(ColorSensor));
   }
 
   /**
