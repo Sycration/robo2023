@@ -4,45 +4,43 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.OneMotor;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.RobotContainer;
+import frc.robot.Constants.OperatorConstants;
+import frc.robot.subsystems.Drive;
 
-/** An example command that uses an example subsystem. */
-public class Hold extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final OneMotor m_subsystem;
+public class ManualDrive extends CommandBase {
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public Hold(OneMotor subsystem) {
-    m_subsystem = subsystem;
+  private final CommandXboxController m_driverController;
+  //private final Drive m_drive;
+
+  /** Creates a new ManualDrive. */
+  public ManualDrive() {
+    m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
+    //m_drive = drive;
+
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
-
+    addRequirements(RobotContainer.drive);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Command init!");
-
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
 
-    m_subsystem.speed(m_subsystem.lastSpeed());
+    RobotContainer.drive.drive(m_driverController.getLeftY(), m_driverController.getRightY());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.stop();
   }
 
   // Returns true when the command should end.
