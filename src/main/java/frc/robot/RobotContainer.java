@@ -10,6 +10,7 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.ManualDrive;
 import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -22,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-
+  public static Limelight limelight;
   public static Drive drive;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -32,6 +33,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     drive = new Drive();
+    limelight = new Limelight();
     drive.setDefaultCommand(new ManualDrive());
     configureBindings();
   }

@@ -19,8 +19,11 @@ public final class Constants {
   public static final int RF = 5;
   public static final int RB = 14;
 
-  public static final double SpeedScale = 0.5;
+  public static final double SpeedScale = 0.2;
 
+  public static final String LimelightName = "KakyloptekUponTheKaidu";
+  //PV url http://kakyloptekuponthekaidu.local:5800/
+  public static final int RollingAverageLength = 14;
 
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
