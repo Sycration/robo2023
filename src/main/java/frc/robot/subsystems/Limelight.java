@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.namespace.QName;
 
@@ -22,8 +23,10 @@ public class Limelight extends SubsystemBase {
 
   Double[] avgList;
   PhotonCamera camera;
+  public static Double avg = 0.0;
 
   public Limelight() {
+    avg = 0.0;
     camera = new PhotonCamera("OV5647");
     avgList = new Double[Constants.RollingAverageLength];
     for (int i = 0; i < avgList.length; i++) {
@@ -36,7 +39,12 @@ public class Limelight extends SubsystemBase {
     Boolean connected = camera.isConnected();
     SmartDashboard.putBoolean("PV connected", connected);
     if (connected) {
-      Double current = camera.getLatestResult().getBestTarget().getYaw();
+      PhotonTrackedTarget target = camera.getLatestResult().getBestTarget();
+      Double current = 0.0;
+      if (!Objects.isNull(target)) {
+        current = target.getYaw();
+      }
+      
       for (int i = 0; i < avgList.length - 1; i++) {
         avgList [i] = avgList[(i+1)];
       }
@@ -47,10 +55,21 @@ public class Limelight extends SubsystemBase {
         average += d;
       }
       average = average/avgList.length;
+      avg = average;
       //System.out.println(avgList.toString());
       SmartDashboard.putNumber("Limelight current", current);
       SmartDashboard.putNumberArray("Limelight target rolling avg array", avgList);
       SmartDashboard.putNumber("Limelight average", average);
     }
+  }
+
+  public static Double getYaw() {
+    if (avg.isNaN()) {
+      return 0.0;
+    }
+    if (avg.isInfinite()) {
+      return 0.0;
+    }
+    return avg;
   }
 }

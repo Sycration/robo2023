@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.Drive;
@@ -34,8 +35,11 @@ public class ManualDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    RobotContainer.drive.drive(m_driverController.getLeftY(), m_driverController.getRightY());
+    Double l = m_driverController.getLeftY();
+    Double r = m_driverController.getRightY();
+    double sgnL = Math.signum(l);
+    double sgnR = Math.signum(r);
+    RobotContainer.drive.drive((l*l * sgnL) * Constants.SpeedScale, (r*r * sgnR) * Constants.SpeedScale);
   }
 
   // Called once the command ends or is interrupted.

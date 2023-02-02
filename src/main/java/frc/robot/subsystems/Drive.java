@@ -69,9 +69,8 @@ public class Drive extends SubsystemBase {
    */
 
    public void drive(double l, double r) {
-    double sgnL = Math.signum(l);
-    double sgnR = Math.signum(r);
-    drive.tankDrive(-(l*l * sgnL) * Constants.SpeedScale, (r*r * sgnR) * Constants.SpeedScale);
+
+    drive.tankDrive(-l, r);
    }
   public boolean exampleCondition() {
     // Query some boolean state, such as a digital sensor.
