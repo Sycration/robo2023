@@ -42,6 +42,12 @@ public final class Constants {
   public static final int PigeonBusID = 0;
 
 
+  public static final int Shoulder1Motor = 0;
+  public static final int Shoulder2Motor = 0;
+  public static final int Arm1Motor = 0;
+  public static final int Arm2Motor = 0;
+  public static final int WristMotor = 0;
+
 
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;

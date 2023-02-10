@@ -27,12 +27,13 @@ public class Level extends PIDCommand {
         output -> {
           // Use the output here
           RobotContainer.drive.drive(
-            Math.min(output * Constants.LevelSpeedScale, Constants.LevelMaxSpeed), 
-            Math.min(output * Constants.LevelSpeedScale, Constants.LevelMaxSpeed)
+              Math.min(output * Constants.LevelSpeedScale, Constants.LevelMaxSpeed),
+              Math.min(output * Constants.LevelSpeedScale, Constants.LevelMaxSpeed));
         });
-        // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(RobotContainer.gyroscope);
-        addRequirements(RobotContainer.drive);
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.gyroscope);
+    addRequirements(RobotContainer.drive);
+
     // Configure additional PID options by calling `getController` here.
   }
 
