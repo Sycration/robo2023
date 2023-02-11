@@ -44,12 +44,25 @@ public final class Constants {
 
   public static final int Shoulder1Motor = 0;
   public static final int Shoulder2Motor = 0;
+  public static final double ShoulderMaxExtent = 0;
+  public static final double ShoulderSpeedScale = 0;
+
   public static final int Arm1Motor = 0;
   public static final int Arm2Motor = 0;
+  public static final double ArmMaxExtent = 0;
+  public static final double ArmSpeedScale = 0;
+
+
   public static final int WristMotor = 0;
+  public static final double WristCloseSpeed = 0;
+  public static final double WristMaxExtent = 0;
+  public static final double WristDeadzone = 0;
+  public static final double WristSpeedScale = 0;
+
 
 
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kArmControllerPort = 1;
   }
 }

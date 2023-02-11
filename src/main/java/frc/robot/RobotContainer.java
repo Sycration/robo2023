@@ -9,11 +9,11 @@ import frc.robot.commands.AimPID;
 import frc.robot.commands.Autos;
 
 import frc.robot.commands.ManualDrive;
+import frc.robot.commands.RunArm;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyroscope;
-import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -30,7 +30,6 @@ public class RobotContainer {
   public static Limelight limelight;
   public static Drive drive;
   public static Arm arm;
-  public static Intake intake;
   public static Gyroscope gyroscope;
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -41,9 +40,9 @@ public class RobotContainer {
     drive = new Drive();
     arm = new Arm();
     limelight = new Limelight();
-    intake = new Intake();
     gyroscope = new Gyroscope();
     drive.setDefaultCommand(new ManualDrive());
+    arm.setDefaultCommand(new RunArm());
     configureBindings();
   }
 

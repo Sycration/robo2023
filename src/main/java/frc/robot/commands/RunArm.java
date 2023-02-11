@@ -5,10 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import frc.robot.Constants.OperatorConstants;
 
 public class RunArm extends CommandBase {
+  private final CommandXboxController m_driverController;
+
   /** Creates a new RunArm. */
   public RunArm() {
+    m_driverController = new CommandXboxController(OperatorConstants.kArmControllerPort);
+
+    addRequirements(RobotContainer.arm);
+
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -18,7 +28,19 @@ public class RunArm extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double l = m_driverController.getLeftY();
+    double r = m_driverController.getRightY();
+    double t = m_driverController.getLeftTriggerAxis();
+    double sgnL = Math.signum(l);
+    double sgnR = Math.signum(r);
+    double sgnT = Math.signum(t);
+    RobotContainer.arm.moveShoulder((l*l * sgnL) * Constants.ShoulderSpeedScale);
+    RobotContainer.arm.moveShoulder((r*r * sgnR) * Constants.ArmSpeedScale);
+    RobotContainer.arm.moveWrist((t*t * sgnT) * Constants.WristSpeedScale);
+
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override
