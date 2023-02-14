@@ -59,6 +59,12 @@ public final class Constants {
   public static final double WristDeadzone = 0;
   public static final double WristSpeedScale = 0;
 
+  public static final int IntakeMotor = 0;
+  public static final double IntakeCloseSpeed = 0;
+  public static final double IntakeMaxExtent = 0;
+  public static final double IntakeDeadzone = 0;
+  public static final double IntakeSpeedScale = 0;
+
 
 
   public static class OperatorConstants {

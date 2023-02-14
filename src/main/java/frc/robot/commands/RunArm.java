@@ -24,7 +24,8 @@ public class RunArm extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -35,16 +36,16 @@ public class RunArm extends CommandBase {
     double sgnL = Math.signum(l);
     double sgnR = Math.signum(r);
     double sgnT = Math.signum(t);
-    RobotContainer.arm.moveShoulder((l*l * sgnL) * Constants.ShoulderSpeedScale);
-    RobotContainer.arm.moveShoulder((r*r * sgnR) * Constants.ArmSpeedScale);
-    RobotContainer.arm.moveWrist((t*t * sgnT) * Constants.WristSpeedScale);
-
+    RobotContainer.arm.moveShoulder((l * l * sgnL) * Constants.ShoulderSpeedScale);
+    RobotContainer.arm.moveShoulder((r * r * sgnR) * Constants.ArmSpeedScale);
+    RobotContainer.arm.moveWrist((t * t * sgnT) * Constants.WristSpeedScale);
 
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
