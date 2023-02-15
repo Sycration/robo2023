@@ -7,14 +7,14 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AimPID;
 import frc.robot.commands.Autos;
-
+import frc.robot.commands.Level;
 import frc.robot.commands.ManualDrive;
 import frc.robot.commands.RunArm;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyroscope;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -31,7 +31,7 @@ public class RobotContainer {
   public static Limelight limelight;
   public static Drive drive;
   public static Arm arm;
-  public static Intake intake;
+  public static Claw claw;
   public static Gyroscope gyroscope;
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -65,6 +65,7 @@ public class RobotContainer {
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     m_driverController.x().whileTrue(new AimPID());
+    m_driverController.b().whileTrue(new Level());
     // m_driverController.a().onTrue(new ExampleCommand(OneMotor, 3.0, -0.001));
     // m_driverController.x().onTrue(new ExampleCommand(OneMotor, 3.0, 0.0));
     // m_driverController.y().onTrue(new Hold(OneMotor));

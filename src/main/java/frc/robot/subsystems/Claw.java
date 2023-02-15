@@ -12,28 +12,28 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Intake extends SubsystemBase {
+public class Claw extends SubsystemBase {
 
-  MotorController intake;
-  RelativeEncoder intakeEncoder;
+  MotorController claw;
+  RelativeEncoder clawEncoder;
 
-  /** Creates a new Intake. */
-  public Intake() {
-    intake = new CANSparkMax(Constants.IntakeMotor, MotorType.kBrushless);
-    intakeEncoder = ((CANSparkMax) intake).getEncoder();
-    intakeEncoder.setPosition(0);
+  /** Creates a new Claw. */
+  public Claw() {
+    claw = new CANSparkMax(Constants.ClawMotor, MotorType.kBrushless);
+    clawEncoder = ((CANSparkMax) claw).getEncoder();
+    clawEncoder.setPosition(0);
 
   }
 
   //FIXME Possibly fucked. Beware
-  public void moveIntake(Double speed) {
-    double pos = intakeEncoder.getPosition();
-    if (speed > Constants.IntakeDeadzone && pos < Constants.IntakeMaxExtent) {
-      intake.set(speed);
-    } else if (speed <= Constants.IntakeDeadzone && pos > 0) {
-      intake.set(Constants.IntakeCloseSpeed);
+  public void moveClaw(Double speed) {
+    double pos = clawEncoder.getPosition();
+    if (speed > Constants.ClawDeadzone && pos < Constants.ClawMaxExtent) {
+      claw.set(speed);
+    } else if (speed <= Constants.ClawDeadzone && pos > 0) {
+      claw.set(Constants.ClawCloseSpeed);
     } else {
-      intake.set(0);
+      claw.set(0);
     }
   }
 

@@ -5,19 +5,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
- import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.OperatorConstants;
 
-public class RunIntake extends CommandBase {
+public class RunClaw extends CommandBase {
   private final CommandXboxController m_driverController;
 
   /** Creates a new runIntake. */
-  public RunIntake() {
+  public RunClaw() {
     m_driverController = new CommandXboxController(OperatorConstants.kArmControllerPort);
 
-    addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.claw);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -32,7 +32,7 @@ public class RunIntake extends CommandBase {
     double t = m_driverController.getRightTriggerAxis();
 
     double sgnT = Math.signum(t);
-    RobotContainer.intake.moveIntake((t * t * sgnT) * Constants.IntakeSpeedScale);
+    RobotContainer.claw.moveClaw((t * t * sgnT) * Constants.ClawSpeedScale);
 
   }
 

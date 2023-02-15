@@ -59,11 +59,11 @@ public final class Constants {
   public static final double WristDeadzone = 0;
   public static final double WristSpeedScale = 0;
 
-  public static final int IntakeMotor = 0;
-  public static final double IntakeCloseSpeed = 0;
-  public static final double IntakeMaxExtent = 0;
-  public static final double IntakeDeadzone = 0;
-  public static final double IntakeSpeedScale = 0;
+  public static final int ClawMotor = 0;
+  public static final double ClawCloseSpeed = 0;
+  public static final double ClawMaxExtent = 0;
+  public static final double ClawDeadzone = 0;
+  public static final double ClawSpeedScale = 0;
 
 
 
