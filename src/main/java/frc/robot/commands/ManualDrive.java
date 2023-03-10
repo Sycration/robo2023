@@ -37,9 +37,8 @@ public class ManualDrive extends CommandBase {
   public void execute() {
     Double l = m_driverController.getLeftY();
     Double r = m_driverController.getRightY();
-    double sgnL = Math.signum(l);
-    double sgnR = Math.signum(r);
-    RobotContainer.drive.drive((l*l * sgnL) * Constants.SpeedScale, (r*r * sgnR) * Constants.SpeedScale);
+
+    RobotContainer.drive.drive((l*l*l) * Constants.SpeedScale, (r*r*r) * Constants.SpeedScale);
   }
 
   // Called once the command ends or is interrupted.

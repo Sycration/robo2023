@@ -21,7 +21,7 @@ public final class Constants {
   public static final int RF = 5;
   public static final int RB = 14;
 
-  public static final double SpeedScale = 0.5;
+  public static final double SpeedScale = 0.85;
 
   public static final String LimelightName = "KakyloptekUponTheKaidu";
   //PV url http://kakyloptekuponthekaidu.local:5800/
